@@ -84,12 +84,14 @@ class DNS implements API
         int $perPage = 20,
         string $order = '',
         string $direction = '',
+        bool $proxied = false,
         string $match = 'all'
     ): \stdClass {
         $query = [
             'page' => $page,
             'per_page' => $perPage,
-            'match' => $match
+            'match' => $match,
+            'proxied' => $proxied,
         ];
 
         if (!empty($type)) {
