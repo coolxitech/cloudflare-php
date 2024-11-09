@@ -14,7 +14,7 @@ class Guzzle implements Adapter
     /**
      * @inheritDoc
      */
-    public function __construct(Auth $auth, string $baseURI = null)
+    public function __construct(Auth $auth, string $baseURI = null, string $proxy = '')
     {
         if ($baseURI === null) {
             $baseURI = 'https://api.cloudflare.com/client/v4/';
@@ -25,7 +25,8 @@ class Guzzle implements Adapter
         $this->client = new Client([
             'base_uri' => $baseURI,
             'headers' => $headers,
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+            'proxy' => $proxy
         ]);
     }
 
