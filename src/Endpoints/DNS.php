@@ -43,13 +43,15 @@ class DNS implements API
         int $ttl = 0,
         bool $proxied = true,
         string $priority = '',
-        array $data = []
+        array $data = [],
+        string $comment = ''
     ): bool {
         $options = [
             'type' => $type,
             'name' => $name,
             'content' => $content,
-            'proxied' => $proxied
+            'proxied' => $proxied,
+            'comment' => $comment,
         ];
 
         if ($ttl > 0) {
