@@ -3,13 +3,13 @@
   "description": "PHP binding for v4 of the Cloudflare Client API.",
   "type": "library",
   "require": {
-    "guzzlehttp/guzzle": "^7.0.1",
-    "php": ">=7.2.5",
+    "guzzlehttp/guzzle": "^7.9",
+    "php": ">=8.0",
     "psr/http-message": "~1.0",
     "ext-json": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.7",
+    "phpunit/phpunit": "^11.4",
     "phpmd/phpmd" : "@stable",
     "friendsofphp/php-cs-fixer": "^3.64.0"
   },
@@ -18,6 +18,10 @@
     {
       "name": "Junade Ali",
       "email": "junade@cloudflare.com"
+    },
+    {
+      "name": "CoolXiTech",
+      "email": "admin@kuxi.tech"
     }
   ],
   "autoload": {
@@ -34,5 +38,13 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "optimize-autoloader": true
-  }
+  },
+  "repositories": [
+    {
+      "description": "阿里云镜像",
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/",
+      "canonical": false
+    }
+  ]
 }
