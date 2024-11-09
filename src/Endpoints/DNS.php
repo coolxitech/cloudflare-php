@@ -70,11 +70,7 @@ class DNS implements API
 
         $this->body = json_decode($user->getBody());
 
-        if (isset($this->body->result->id)) {
-            return true;
-        }
-
-        return false;
+        return $this->body;
     }
 
     public function listRecords(
