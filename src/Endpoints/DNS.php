@@ -10,6 +10,7 @@ namespace Cloudflare\API\Endpoints;
 
 use Cloudflare\API\Adapter\Adapter;
 use Cloudflare\API\Traits\BodyAccessorTrait;
+use stdClass;
 
 class DNS implements API
 {
@@ -45,7 +46,7 @@ class DNS implements API
         string $priority = '',
         array $data = [],
         string $comment = ''
-    ): \stdClass {
+    ): stdClass {
         $options = [
             'type' => $type,
             'name' => $name,
@@ -84,7 +85,7 @@ class DNS implements API
         string $direction = '',
         bool $proxied = false,
         string $match = 'all'
-    ): \stdClass {
+    ): stdClass {
         $query = [
             'page' => $page,
             'per_page' => $perPage,
@@ -118,7 +119,7 @@ class DNS implements API
         return (object)['result' => $this->body->result, 'result_info' => $this->body->result_info];
     }
 
-    public function getRecordDetails(string $zoneID, string $recordID): \stdClass
+    public function getRecordDetails(string $zoneID, string $recordID): stdClass
     {
         $user = $this->adapter->get('zones/' . $zoneID . '/dns_records/' . $recordID);
         $this->body = json_decode($user->getBody());
@@ -134,7 +135,21 @@ class DNS implements API
         return false;
     }
 
-    public function updateRecordDetails(string $zoneID, string $recordID, array $details): \stdClass
+    public function updateRecord(string $zoneID, string $recordID, array $details): stdClass
+    {
+        $response = $this->adapter->patch('zones/' . $zoneID . '/dns_records/' . $recordID, $details);
+        $this->body = json_decode($response->getBody());
+        return $this->body;
+    }
+
+    /**
+     * Overwrite DNS Record
+     * @param string $zoneID
+     * @param string $recordID
+     * @param array $details
+     * @return stdClass
+     */
+    public function updateRecordDetails(string $zoneID, string $recordID, array $details): stdClass
     {
         $response = $this->adapter->put('zones/' . $zoneID . '/dns_records/' . $recordID, $details);
         $this->body = json_decode($response->getBody());
