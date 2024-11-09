@@ -45,7 +45,7 @@ class DNS implements API
         string $priority = '',
         array $data = [],
         string $comment = ''
-    ): bool {
+    ): \stdClass {
         $options = [
             'type' => $type,
             'name' => $name,
